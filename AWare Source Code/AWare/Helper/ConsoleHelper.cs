@@ -9,10 +9,7 @@ namespace AWare.Helper
 {
     public static class ConsoleHelper
     {
-        //public static string desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-        //public static string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        //public static string pictures = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
+ 
         internal static (string Log, bool Paid) PaymentStatus = ("You have not paid.", false);
 
         public static void AsciiHeader(string sessId)
