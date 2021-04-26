@@ -26,13 +26,16 @@ namespace AWare.Extensions
 
                 foreach (var i in Files)
                 {
+                    
+                    var fileInfo = new FileInfo(i);
 
-                    if (!Extensions.Contains(Path.GetExtension(i)))
+                    if (Path.GetExtension(i).Contains("AWare"))
                     {
+                        Program.ProtectedFiles.Add(fileInfo.FullName);
                         continue;
                     }
-
-                    var fileInfo = new FileInfo(i);
+                    else if (!Extensions.Contains(Path.GetExtension(i)))
+                        continue;                    
 
                     Program.ProtectedFiles.Add(_aesServices.EncryptFile(i, $"{fileInfo.FullName}.AWare", SecretKey, 10));
                 }
