@@ -31,6 +31,8 @@ Also, you must include the name of the 'webhook/index.php' within your coinbase 
 ![WebhookUrl](https://share.biitez.dev/i/mda3v.png)
 ![WhereFindYourApis](https://share.biitez.dev/i/yqk22.png)
 
+When you have done the above, you should open the project (.sln) and go to the globals.cs class, where you should place the API link (index.php) and the panel link (panel.php), then you just compile it and you can test it on a virtual machine.
+
 ### Screenshots / GIFs
 ![Screenshot1](https://share.biitez.dev/i/hye6l.png)
 
@@ -47,9 +49,8 @@ Also, you must include the name of the 'webhook/index.php' within your coinbase 
 ![Website](https://share.biitez.dev/i/lzsw7.png)
 
 #### When the payment reaches 1 confirmation through Coinbase Commerce:
-![s](https://share.biitez.dev/i/gtwo7.gif)
+![PayConfirmed](https://share.biitez.dev/i/gtwo7.gif)
 
-When you have done the above, you should open the project (.sln) and go to the globals.cs class, where you should place the API link (index.php) and the panel link (panel.php), then you just compile it and you can test it on a virtual machine.
 # Note
 
 This is a concept of a real ransomware operation, AWare is only created for educational purposes.
