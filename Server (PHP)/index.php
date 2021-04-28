@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include('connect.php');
 
 header("Content-Type: application/json");
@@ -123,6 +121,5 @@ function generateRandomString($length = 10)
     }
     return $randomString;
 }
-
 
 ?>
