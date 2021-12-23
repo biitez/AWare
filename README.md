@@ -1,4 +1,5 @@
-# AWare — C# Ransomware
+# AWare — C# Ransomware (Being rewritten!)
+
 Ransomware with automatic Coinbase Commerce integration created in C# (Console) and PHP
 
 PD: AWare is just a proof of concept, with this, you can read the encryption and see how it is used, and thus prevent a real one.
