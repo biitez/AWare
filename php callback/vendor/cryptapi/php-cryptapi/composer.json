@@ -1,0 +1,32 @@
+{
+  "name": "cryptapi/php-cryptapi",
+  "type": "library",
+  "description": "CryptAPI's PHP library",
+  "keywords": ["cryptapi", "crypto", "bitcoin", "litecoin", "ethereum", "bitcoin cash", "monero", "iota", "payments", "cryptocurrencies"],
+  "homepage": "https://github.com/cryptapi/php-cryptapi",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "CryptAPI",
+      "email": "info@cryptapi.io",
+      "homepage": "https://cryptapi.io",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "info@cryptapi.io",
+    "chat": "https://cryptapi.io",
+    "docs": "https://cryptapi.io/docs/"
+  },
+  "require": {
+    "php": ">=5.6.0",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "CryptAPI\\": "CryptAPI/"
+    }
+  },
+  "version": "1.4.0"
+}
