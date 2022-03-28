@@ -1,3 +1,3 @@
-### AWare '2.0'
+### AWare 2.0
 
-Rewritten version created for educational purposes, not finished.
+Rewritten ransomware created in C# (Under development)
