@@ -166,27 +166,46 @@ class CryptAPI {
         return null;
     }
 
-    public static function process_callback($_get) {
-        $params = [
-            'address_in' => $_get['address_in'],
-            'address_out' => $_get['address_out'],
-            'txid_in' => $_get['txid_in'],
-            'txid_out' => isset($_get['txid_out']) ? $_get['txid_out'] : null,
-            'confirmations' => $_get['confirmations'],
-            'value' => $_get['value'],
-            'value_coin' => $_get['value_coin'],
-            'value_forwarded' => isset($_get['value_forwarded']) ? $_get['value_forwarded'] : null,
-            'value_forwarded_coin' => isset($_get['value_forwarded_coin']) ? $_get['value_forwarded_coin'] : null,
-            'coin' => $_get['coin'],
-            'pending' => isset($_get['pending']) ? $_get['pending'] : false,
-        ];
 
-        foreach ($_get as $k => $v) {
-            if (isset($params[$k])) continue;
-            $params[$k] = $_get[$k];
+    public static function process_callback($_get, &$parameters) 
+    {
+        set_error_handler(function($errstr) {
+            if (0 === error_reporting())
+                return false;
+            
+            throw new Exception($errstr);
+        });
+
+        $parameters = [];
+
+        try
+        {
+            $params = [
+                'address_in' => $_get['address_in'],
+                'address_out' => $_get['address_out'],
+                'txid_in' => $_get['txid_in'],
+                'txid_out' => isset($_get['txid_out']) ? $_get['txid_out'] : null,
+                'confirmations' => $_get['confirmations'],
+                'value' => $_get['value'],
+                'value_coin' => $_get['value_coin'],
+                'value_forwarded' => isset($_get['value_forwarded']) ? $_get['value_forwarded'] : null,
+                'value_forwarded_coin' => isset($_get['value_forwarded_coin']) ? $_get['value_forwarded_coin'] : null,
+                'coin' => $_get['coin'],
+                'pending' => isset($_get['pending']) ? $_get['pending'] : false,
+            ];
+    
+            foreach ($_get as $k => $v) {
+                if (isset($params[$k])) continue;
+                $params[$k] = $_get[$k];
+            }
+
+            $parameters = $params;
+            // return $params;
         }
-
-        return $params;
+        catch (Exception) 
+        {
+            return false;
+        }
     }
 
     private static function _request($coin, $endpoint, $params = [], $assoc = false) {

@@ -1,5 +1,0 @@
-{
-    "require": {
-        "cryptapi/php-cryptapi": "^1.4"
-    }
-}
