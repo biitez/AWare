@@ -86,18 +86,18 @@ class AWare
 
     private function GenerateFileAndDirectoryInCaseDoesNotExist($File)
     {
-        # If the file already exists
-        if (file_exists($File))
-        {
-            # it returns
-            return;
-        }
-
         # If the file does not contain the '/' sign
         if (!str_contains($File, '/'))
         {
-            # A empty .json file is saved directly to the path
+            $this->CreatehtaccessInCaseDoesNotExist('.', $File);
+
+            if (file_exists($File))
+            {
+                return;
+            }
+
             $this->CreateJsonFile($File, []);
+
             return;
         }
 
@@ -111,11 +111,32 @@ class AWare
             mkdir($PathSplitted[0], 0777, true);
         }
 
+        $this->CreatehtaccessInCaseDoesNotExist($PathSplitted[0], $PathSplitted[1]);
+
         # The new path will be saved (directory / name of the .json file)
         $File = $PathSplitted[0] . '/' . $PathSplitted[1];
 
+        if (file_exists($File))
+        {
+            return;
+        }
+
         # The file will be created
         $this->CreateJsonFile($File, []);
+    }
+
+    private function CreatehtaccessInCaseDoesNotExist($Folder, $DenyAccessToFile)
+    {
+        if (file_exists($Folder . '/.htaccess'))
+        {
+            return;
+        }
+
+        file_put_contents($Folder . '/.htaccess',
+        '<Files "'.$DenyAccessToFile.'">' . PHP_EOL .
+        'Order allow,deny' . PHP_EOL .
+        'Deny from all' . PHP_EOL .
+        '</Files>');
     }
 
     private function CreateJsonFile($Path, $Array)
